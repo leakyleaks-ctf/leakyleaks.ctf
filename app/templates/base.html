@@ -8,19 +8,29 @@
 	<meta name="description" content="" />
 	
 	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="static/css/kickstart.css" media="all" />
-	<link rel="stylesheet" type="text/css" href="static/style.css" media="all" /> 
+	<link rel="stylesheet" type="text/css" href="/static/css/kickstart.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="/static/style.css" media="all" /> 
 	
 	<!-- Javascript -->
-	<script type="text/javascript" src="static/jquery.min.js"></script>
-	<script type="text/javascript" src="static/js/kickstart.js"></script>
+	<script type="text/javascript" src="/static/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/js/kickstart.js"></script>
 </head>
 <body>
 <div class="grid">
 	<div class="col_12" style="margin-top:100px;">
-	<a href="/">Overview</a>	
-	<a href="/leaks">leaks</a>	
-	<a href="/submit">Submit</a>	
+	<a href="{{ url_for('index') }}">Overview</a>	
+	<a href="{{ url_for('leaks') }}">leaks</a>	
+	<a href="{{ url_for('submit') }}">Submit</a>	
+	<hr />
+	{% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
 	{% block content %}
 	<p><em>Sorry</em>, there should be some conent here</p>
 	{% endblock %}
