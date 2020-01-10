@@ -4,11 +4,11 @@ from app import app
 @app.route('/')
 @app.route('/index')
 def index():
-        return "Hello, World!"
+        return render_template("index.html")
 
 @app.route("/submit")
 def submit():
-        return "Hello"
+        return render_template("submit.html", leaks=leaks)
 
 @app.route("/leaks")
 def leaks():
