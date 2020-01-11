@@ -1,17 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
 <h1 class="center">
+    <p><i class="fa fa-fire">Submit your leaks</i></p>
+</h1>
 
-			<p><i class="fa fa-fire">Submit your leaks</i></p>
-		</h1>
+    <p>
+        <form class="vertical" method="post">
+            {{ form.hidden_tag() }}
+            <h2>{{ form.submitter.label }}</h2>  (Completely optional. Of course you can stay completely anonymous)
+            {{ form.submitter() }}
+            {% for error in form.submitter.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
 
-		<p>
-			<form class="vertical">
-				<label for="submitter">Submitter</label>
-				<input id="submitter" type="text" />
-				<label for="content">Content</label>
-				<textarea id="content" placeholder="put your juicy leaks here"></textarea>
-				<button>Submit</button>
-			</form>
-		</p>
+            <h2>{{ form.submission.label }}</h2>
+            {{ form.submission() }}
+            {% for error in form.submission.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+
+            <p>{{ form.submit() }}</p>
+        </form>
+    </p>
 {% endblock %}

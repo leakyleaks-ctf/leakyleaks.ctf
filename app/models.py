@@ -24,9 +24,10 @@ class User(UserMixin, db.Model):
 
 class Submission(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    publishing_status = db.Column(db.String(11), default="unpublished")
     submission = db.Column(db.Unicode(500))
-    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     submitter = db.Column(db.Unicode(500))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
     def __repr__(self):
         return '<Submission {}'.format(self.submission)

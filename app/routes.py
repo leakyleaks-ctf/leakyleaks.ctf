@@ -1,18 +1,28 @@
 from flask import render_template, flash, redirect, request, url_for
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
-from app import app
-from app.forms import LoginForm
-from app.models import User
+from app import app, db
+from app.forms import LoginForm, SubmitForm
+from app.models import User, Submission
 
 @app.route('/')
 @app.route('/index')
 def index():
-        return render_template("index.html")
+    return render_template("index.html")
 
-@app.route("/submit")
+@app.route("/submit", methods=['GET', 'POST'])
 def submit():
-        return render_template("submit.html", leaks=leaks)
+    form = SubmitForm()
+    if form.validate_on_submit():
+        submission = Submission(
+                submitter = form.submitter.data, 
+                submission = form.submission.data,
+                publishing_status = "unpublished")
+        db.session.add(submission)
+        db.session.commit()
+        flash('Your leak has been saved and is going to be reviewed. Thank you for leaking with <em>Leakyleaks</em>')
+        return redirect(url_for('index'))
+    return render_template('submit.html', form=form)
 
 @app.route("/leaks")
 def leaks():
