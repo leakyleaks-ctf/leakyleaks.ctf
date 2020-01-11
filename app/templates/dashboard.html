@@ -1,5 +1,25 @@
 {% extends "base.html" %}
-
 {% block content %}
-Here comes the Dashboard
+		<h1 class="center">
+			<p><i class="fa fa-fire">Our glorious leaks</i></p>
+		</h1>
+
+		<p>
+		{% if leaks %}
+		<ul>
+			{% for leak in leaks %}
+			<li>
+				<p>{{ leak.content }}</p>
+				{% if leak.submitter %}
+				<p>{{ leak.submitter }}</p>
+				{% else %}
+				<p>Submitter chose to stay anonymous</p>
+				{% endif %}
+			</li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		<p>There are currently no leaks</p>
+		{% endif %}
+		</p>
 {% endblock %}

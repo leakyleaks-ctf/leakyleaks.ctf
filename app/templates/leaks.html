@@ -1,20 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
-		<h1 class="center">
-			<p><i class="fa fa-fire">Our glorious leaks</i></p>
-		</h1>
+<div class="col_10">
+		<h4 class="">
+			<p>Our glorious leaks</p>
+		</h4>
 
 		<p>
 		{% if leaks %}
 		<ul>
 			{% for leak in leaks %}
 			<li>
-				<p>{{ leak.content }}</p>
 				{% if leak.submitter %}
-				<p>{{ leak.submitter }}</p>
+				<p>Submitted by: <em>{{ leak.submitter }}</em></p>
 				{% else %}
 				<p>Submitter chose to stay anonymous</p>
 				{% endif %}
+				<p>{{ leak.content }}</p>
+                <hr class="alt2"/>
 			</li>
 			{% endfor %}
 		</ul>
@@ -22,4 +24,5 @@
 		<p>There are currently no leaks</p>
 		{% endif %}
 		</p>
+</div>
 {% endblock %}

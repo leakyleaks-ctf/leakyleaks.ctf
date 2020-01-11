@@ -15,22 +15,43 @@
 	<script type="text/javascript" src="/static/jquery.min.js"></script>
 	<script type="text/javascript" src="/static/js/kickstart.js"></script>
 </head>
+
 <body>
 <div class="grid">
-	<div class="col_12" style="margin-top:100px;">
-	<a href="{{ url_for('index') }}">Overview</a>	
-	<a href="{{ url_for('leaks') }}">leaks</a>	
-	<a href="{{ url_for('submit') }}">Submit</a>	
+	<div class="col_12" style="background:#ebebd3;margin-top:100px;">
+    <h1 class="center" style=""><i class="fa fa-fire">Leakyleaks</i></h1>
+    <h6 class="center">Your trustworthy leaking platform</h6>
+    </div>
+	<div class="col_12" style="">
+    <ul class="menu">
+        <li><a href="{{ url_for('index') }}">Overview</a></li>
+        <li><a href="{{ url_for('leaks') }}">Leaks</a></li>
+        <li><a href="{{ url_for('submit') }}">Submit</a></li>
+        {% if not current_user.is_anonymous %}
+        <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        {% endif %}
+    </ul>
 	<hr />
+    </div> <!-- head of page ends here -->
+
+    <div class="col_12" style="margin-top:20px;background:white;">
+
 	{% with messages = get_flashed_messages() %}
         {% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
+        <!-- Warning -->
+        <div class="notice warning">
+            <i class="icon-warning-sign icon-large"></i> Please note:
+            <a href="#close" class="icon-remove"></a>
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
         {% endif %}
         {% endwith %}
+
 	{% block content %}
 	<p><em>Sorry</em>, there should be some conent here</p>
 	{% endblock %}
