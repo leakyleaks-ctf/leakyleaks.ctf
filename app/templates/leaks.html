@@ -2,7 +2,7 @@
 {% block content %}
 <div class="col_10">
 		<h4 class="">
-			<p>Our glorious leaks</p>
+			<p>Our glorious published leaks</p>
 		</h4>
 
 		<p>
@@ -15,7 +15,7 @@
 				{% else %}
 				<p>Submitter chose to stay anonymous</p>
 				{% endif %}
-				<p>{{ leak.content }}</p>
+				<p>{{ leak.submission }}</p>
                 <hr class="alt2"/>
 			</li>
 			{% endfor %}

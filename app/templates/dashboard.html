@@ -1,25 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
-		<h1 class="center">
-			<p><i class="fa fa-fire">Our glorious leaks</i></p>
-		</h1>
+		<h3 class="center">
+			<p><i class="fa fa-fire">All submitted leaks</i></p>
+		</h3>
 
-		<p>
-		{% if leaks %}
-		<ul>
-			{% for leak in leaks %}
-			<li>
-				<p>{{ leak.content }}</p>
-				{% if leak.submitter %}
-				<p>{{ leak.submitter }}</p>
-				{% else %}
-				<p>Submitter chose to stay anonymous</p>
-				{% endif %}
-			</li>
+		{% if submissions %}
+            <ul>
+			{% for submission in submissions %}
+                <li><a href="/admin/dashboard/{{ submission.ident }}">
+                    {{ submission.title }}
+                    {% if submission.submitter %}
+                        / <em>{{ submission.submitter }}</em>
+                    {% else %}
+                        / <em>Submitter chose to stay anonymous</em>
+                    {% endif %}
+                    , {{ submission.publishing_status }}
+                    </a>
+                </li>
 			{% endfor %}
-		</ul>
+            </ul>
 		{% else %}
 		<p>There are currently no leaks</p>
 		{% endif %}
-		</p>
 {% endblock %}

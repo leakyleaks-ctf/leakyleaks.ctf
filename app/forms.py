@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, RadioField
+from wtforms.fields import FieldList, FormField
 from wtforms.validators import DataRequired, Length
 
 class LoginForm(FlaskForm):
@@ -9,6 +10,12 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Sign In')
 
 class SubmitForm(FlaskForm):
+    title = StringField('Title', validators=[Length(min=10, max=140)])
     submitter = StringField('Submitter', validators=[Length(min=0, max=500)])
     submission = TextAreaField('Submission', validators=[Length(min=30, max=500)])
     submit = SubmitField('Submit')
+
+class DashboardDetailForm(FlaskForm):
+    action = RadioField(choices=[ ('new', 'New'), ('unpublished','Unpublished'), ('published','Published'), ('review', 'Review'), ('reviewed', 'Reviewed'), ('delete','Delete')])
+#    action = RadioField(choices=[])
+    submit = SubmitField('Change Status')

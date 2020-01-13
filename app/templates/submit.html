@@ -6,16 +6,39 @@
     <p>
         <form class="vertical" method="post">
             {{ form.hidden_tag() }}
-            <h2>{{ form.submitter.label }}</h2>  (Completely optional. Of course you can stay completely anonymous)
+            <h3>{{ form.title.label }}</h3>  (Give your leak a nice title. Must fit in a tweet.)
+            {{ form.title() }}
+            {% for error in form.submitter.errors %}
+            <div class="notice error">
+                <i class="icon-warning-sign icon-large"></i> Please note:
+                <a href="#close" class="icon-remove"></a>
+                <ul>
+                    <li>{{ error }}</li>
+                </ul>
+            </div>
+            {% endfor %}
+            <h3>{{ form.submitter.label }}</h3>  (Completely optional. Of course you can stay completely anonymous)
             {{ form.submitter() }}
             {% for error in form.submitter.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <div class="notice error">
+                <i class="icon-warning-sign icon-large"></i> Please note:
+                <a href="#close" class="icon-remove"></a>
+                <ul>
+                    <li>{{ error }}</li>
+                </ul>
+            </div>
             {% endfor %}
 
-            <h2>{{ form.submission.label }}</h2>
+            <h3>{{ form.submission.label }}</h3>
             {{ form.submission() }}
             {% for error in form.submission.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <div class="notice error">
+                <i class="icon-warning-sign icon-large"></i> Please note:
+                <a href="#close" class="icon-remove"></a>
+                <ul>
+                    <li>{{ error }}</li>
+                </ul>
+            </div>
             {% endfor %}
 
             <p>{{ form.submit() }}</p>
