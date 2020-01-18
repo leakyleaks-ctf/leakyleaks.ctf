@@ -14,25 +14,25 @@ It is completly anonymous and completely secure. And even better: you can run yo
 
 - Install git, python3, python3-virtualenv
 
-	apt install git python3 python3-virtualenv
+    apt install git python3 python3-virtualenv
 
 - Clone this repo
 
-	git clone https://github.com/leakyleaks-ctf/leakyleaks.ctf
+    git clone https://github.com/leakyleaks-ctf/leakyleaks.ctf
 
 - Change into newly created directory and create python virtualenv
 
-	cd leakyleaks.ctf
-	python3 -m virtualenv venv
+    cd leakyleaks.ctf
+    python3 -m virtualenv venv
 
 - Activate virtualenv
 
-	source venv/bin/activate
+    source venv/bin/activate
 
 - install python dependencies
 
-	pip install -r requirements.txt
+    pip install -r requirements.txt
 
 - Set environment variable
 
-	FLASK_APP=leakyapp flask run
+    FLASK_APP=leakyapp flask run
