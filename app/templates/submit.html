@@ -8,7 +8,7 @@
             {{ form.hidden_tag() }}
             <h3>{{ form.title.label }}</h3>  (Give your leak a nice title. Must fit in a tweet.)
             {{ form.title() }}
-            {% for error in form.submitter.errors %}
+            {% for error in form.title.errors %}
             <div class="notice error">
                 <i class="icon-warning-sign icon-large"></i> Please note:
                 <a href="#close" class="icon-remove"></a>
