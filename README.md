@@ -31,7 +31,7 @@ It is completly anonymous and completely secure. And even better: you can run yo
 
 - install python dependencies
 
-	pip install requirements.txt
+	pip install -r requirements.txt
 
 - Set environment variable
 
