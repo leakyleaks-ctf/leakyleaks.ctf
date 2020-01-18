@@ -8,11 +8,18 @@ Whistle blowing is an important basis to conquer corruption and consipiracies!
 
 *leakyleaks* is the new trustworthy platform which supports anonymous whistle blowing. 
 
-It is completly anonymous and completely secure. And even better: you can run your own copy of it on your machine, as it is 100% open source.
+It is completly anonymous and completely secure. And even better: you can run
+your own copy of it on your machine, as it is 100% open source.
 
-# Install and run Instructions
+# Install and run Instructions 
 
-- Install git, python3, python3-virtualenv
+- Create docker container and attach to it (debian based)
+
+    docker image pull debian
+    docker container run --name leakyapp -p 8000:80 -it debian
+    docker container attach leakyapp
+
+- Install git, python3, python3-virtualenv, pg_config
 
     apt install git python3 python3-virtualenv
 
