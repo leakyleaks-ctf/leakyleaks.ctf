@@ -13,15 +13,27 @@ your own copy of it on your machine, as it is 100% open source.
 
 # Install and run Instructions 
 
+- Create and run a postgres container **according to the instructions of the postgres
+  docker image** (assume --name leakdb) use the -v option to pass on persitant storage
+
 - Create docker container and attach to it (debian based)
 
     docker image pull debian
-    docker container run --name leakyapp -p 8000:80 -it debian
+    docker container run --name leakapp -p 8000:80 -it debian
+
+- Create a private network for the apps
+
+    docker network create leaknet
+    docker network connect leaknet leakdb
+    docker network connect leaknet leakapp
+
+- Attach to app container
+
     docker container attach leakyapp
 
-- Install git, python3, python3-virtualenv, pg_config
+- Install git, python3, python3-virtualenv, libpq-dev
 
-    apt install git python3 python3-virtualenv
+    apt install git python3 python3-virtualenv libpq-dev
 
 - Clone this repo
 
@@ -40,6 +52,7 @@ your own copy of it on your machine, as it is 100% open source.
 
     pip install -r requirements.txt
 
-- Set environment variable
+- Set environment variable and run the app
 
+    DATABASE_URL="postgresl://leakydb:donttellnoone@leakdb/leakydb
     FLASK_APP=leakyapp flask run
