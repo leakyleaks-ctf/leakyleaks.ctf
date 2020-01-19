@@ -54,5 +54,5 @@ your own copy of it on your machine, as it is 100% open source.
 
 - Set environment variable and run the app
 
-    DATABASE_URL="postgresl://leakydb:donttellnoone@leakdb/leakydb
+    DATABASE_URL="postgresl://leakydb:<your_database_password_here>@leakdb/leakydb
     FLASK_APP=leakyapp flask run
