@@ -22,8 +22,12 @@ def submit():
         db.session.add(submission)
         db.session.commit()
         flash('Your leak has been saved and is going to be reviewed. Thank you for leaking with <em>Leakyleaks</em>')
-        return redirect(url_for('index'))
+        return redirect(url_for('process'))
     return render_template('submit.html', form=form)
+
+@app.route("/thank_you")
+def process():
+    return render_template("process.html", leaks=url_for('leaks'))
 
 @app.route("/leaks")
 def leaks():
