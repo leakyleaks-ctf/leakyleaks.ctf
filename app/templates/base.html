@@ -30,6 +30,7 @@
         <li><a href="{{ url_for('submit') }}">Submit</a></li>
         {% if not current_user.is_anonymous %}
         <li><a href="{{ url_for('dashboard') }}">Admin Dashboard</a></li>
+        <li><a href="{{ url_for('admin_profile') }}">My Profile</a></li>
         <li><a href="{{ url_for('logout') }}">Logout</a></li>
         {% endif %}
     </ul>

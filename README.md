@@ -56,3 +56,16 @@ your own copy of it on your machine, as it is 100% open source.
 
     DATABASE_URL="postgresl://leakydb:<your_database_password_here>@leakdb/leakydb
     FLASK_APP=leakyapp flask run
+
+# User creation
+
+- Start the flask shell
+
+    FLASK_APP=leakyapp flask shell
+
+- Within the shell, instanciate a user object, add it to the database and commit the session
+
+    u = User(username="yourusername", email="youremail")
+    u.set_password("yourpassword")
+    db.session.add(u)
+    db.session.commit()

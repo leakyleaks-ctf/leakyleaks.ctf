@@ -19,3 +19,11 @@ class DashboardDetailForm(FlaskForm):
     action = RadioField(choices=[ ('new', 'New'), ('unpublished','Unpublished'), ('published','Published'), ('review', 'Review'), ('reviewed', 'Reviewed'), ('delete','Delete')])
 #    action = RadioField(choices=[])
     submit = SubmitField('Change Status')
+
+class AdminProfileForm(FlaskForm):
+    password_hint = StringField('Your password hint:', validators=[Length(min=0, max=140)]) 
+    old_password = StringField('Old password:', validators=[Length(min=0, max=140)]) 
+    new_password = StringField('New password:', validators=[Length(min=0, max=140)]) 
+    new_password2 = StringField('Repeat new password:', validators=[Length(min=0, max=140)]) 
+    change_hint = SubmitField('Change Hint')
+    change_password = SubmitField('Change Password')
