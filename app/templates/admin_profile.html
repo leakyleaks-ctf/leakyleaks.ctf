@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="center"> <p><i class="fa fa-fire">Update your profile</i></p> </h2>
+<div class="col_8">
+
+    <p>
+        <form class="vertical" method="post">
+            {{ form.hidden_tag() }}
+            Provide your old password for all modifying activities:
+            {{ form.old_password.label }} {{ form.old_password() }}
+            {% for error in form.old_password.errors %}
+            <div class="notice error">
+                <i class="icon-warning-sign icon-large"></i> Please note:
+                <a href="#close" class="icon-remove"></a>
+                <ul>
+                    <li>{{ error }}</li>
+                </ul>
+            </div>
+            {% endfor %}
+
+            {{ form.password_hint.label }}  {{ form.password_hint() }}
+            {% for error in form.password_hint.errors %}
+            <div class="notice error">
+                <i class="icon-warning-sign icon-large"></i> Please note:
+                <a href="#close" class="icon-remove"></a>
+                <ul>
+                    <li>{{ error }}</li>
+                </ul>
+            </div>
+            {% endfor %}
+
+            {{ form.new_password.label }} {{ form.new_password() }}
+            {% for error in form.new_password.errors %}
+            <div class="notice error">
+                <i class="icon-warning-sign icon-large"></i> Please note:
+                <a href="#close" class="icon-remove"></a>
+                <ul>
+                    <li>{{ error }}</li>
+                </ul>
+            </div>
+            {% endfor %}
+
+            {{ form.new_password2.label }} {{ form.new_password2() }}
+            {% for error in form.new_password2.errors %}
+            <div class="notice error">
+                <i class="icon-warning-sign icon-large"></i> Please note:
+                <a href="#close" class="icon-remove"></a>
+                <ul>
+                    <li>{{ error }}</li>
+                </ul>
+            </div>
+            {% endfor %}
+
+            <p>{{ form.change_hint() }}</p>
+            <p>{{ form.change_password() }}</p>
+        </form>
+    </p>
+</div>
+{% endblock %}

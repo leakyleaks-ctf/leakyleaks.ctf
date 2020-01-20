@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, request, url_for
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from app import app, db
-from app.forms import LoginForm, SubmitForm, DashboardDetailForm
+from app.forms import LoginForm, SubmitForm, DashboardDetailForm, AdminProfileForm
 from app.models import User, Submission
 
 @app.route('/')
@@ -77,3 +77,28 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+@app.route("/admin/profile", methods=['GET','POST'])
+@login_required
+def admin_profile():
+    id = current_user.get_id()
+    user = User.query.filter_by(id=id).first_or_404()
+    form = AdminProfileForm()
+    if form.validate_on_submit():
+        if form.change_hint.data and user is not None and user.check_password(form.old_password.data):
+            user.set_password_hint(form.password_hint.data)
+            db.session.commit()
+            flash('Your new profile update has been sent to the mainframe for tonight\'s batch processing...')
+            return redirect(url_for('admin_profile'))
+        elif form.change_password.data and user is not None and user.check_password(form.old_password.data):
+            if form.new_password.data == form.new_password2.data:
+                user.set_password(form.new_password.data)
+                db.session.commit()
+                flash('Your new profile update has been sent to the mainframe for tonight\'s batch processing...')
+            return redirect(url_for('admin_profile'))
+        else:
+            flash('There was an error happening, which is not correctly handled. Might want to try again tomorrow.')
+        return redirect(url_for('admin_profile'))
+    form.password_hint.data = user.get_password_hint()
+    return render_template('admin_profile.html', form=form)
+
