@@ -12,7 +12,7 @@ class LoginForm(FlaskForm):
 class SubmitForm(FlaskForm):
     title = StringField('Title', validators=[Length(min=10, max=140)])
     submitter = StringField('Submitter', validators=[Length(min=0, max=500)])
-    submission = TextAreaField('Submission', validators=[Length(min=30, max=500)])
+    submission = TextAreaField('Submission', validators=[Length(min=30, max=10000)])
     submit = SubmitField('Submit')
 
 class DashboardDetailForm(FlaskForm):

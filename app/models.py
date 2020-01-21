@@ -32,7 +32,7 @@ class User(UserMixin, db.Model):
 class Submission(db.Model):
     ident = db.Column(db.Integer, primary_key=True)
     publishing_status = db.Column(db.String(20), default="new")
-    submission = db.Column(db.Unicode(500))
+    submission = db.Column(db.Unicode(10000))
     submitter = db.Column(db.Unicode(500))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     title = db.Column(db.Unicode(140))
