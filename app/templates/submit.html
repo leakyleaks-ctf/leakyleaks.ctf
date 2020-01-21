@@ -6,7 +6,7 @@
     <p>
         <form class="vertical" method="post">
             {{ form.hidden_tag() }}
-            <h3>{{ form.title.label }}</h3>  (Give your leak a nice title. Must fit in a tweet.)
+            <h3>{{ form.title.label }}</h3>  (Give your leak a nice title. Must fit in a tweet so we can promote it.)
             {{ form.title() }}
             {% for error in form.title.errors %}
             <div class="notice error">
@@ -41,6 +41,7 @@
             </div>
             {% endfor %}
 
+            Use <a href="/static/leakyleaks.pub">this</a> for a even securer submission!
             <p>{{ form.submit() }}</p>
         </form>
     </p>
